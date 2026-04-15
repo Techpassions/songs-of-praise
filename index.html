@@ -1073,11 +1073,11 @@ function updateDualView(){
   
   if(!leftLang && !rightLang)return;
   
-  const baseId=currentSong.id.substring(1); // Remove language prefix
+  const baseTitle=currentSong.title;
   
-  // Find songs with same base ID in selected languages
-  const leftSong=leftLang?allSongs.find(s=>s.id.substring(1)===baseId&&s.lang===leftLang):null;
-  const rightSong=rightLang?allSongs.find(s=>s.id.substring(1)===baseId&&s.lang===rightLang):null;
+  // Find songs with same title in selected languages
+  const leftSong=leftLang?allSongs.find(s=>s.title===baseTitle&&s.lang===leftLang):null;
+  const rightSong=rightLang?allSongs.find(s=>s.title===baseTitle&&s.lang===rightLang):null;
   
   // Update left column
   const leftLyricsEl=document.getElementById('left-lyrics');
