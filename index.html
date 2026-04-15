@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#2d1b7e"/>
+<meta name="description" content="Songs of Praise — Worship lyrics in Odia, English, Hindi and Desiya. Works offline."/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="Songs of Praise"/>
+<title>Songs of Praise — Worship Lyrics</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:        #f8f7ff;
+  --bg2:       #f0eeff;
+  --bg3:       #ffffff;
+  --surface:   #ffffff;
+  --surf2:     #f4f2ff;
+  --brand:     #2d1b7e;
+  --brand2:    #3d2a9e;
+  --brand3:    #5040be;
+  --gold:      #c8860a;
+  --gold2:     #e8a020;
+  --text:      #1a1040;
+  --text2:     #4a3f70;
+  --text3:     #8070a8;
+  --border:    #e0dbf5;
+  --border2:   #c8c0e8;
+  --odia:      #1d7a4f;
+  --odia-bg:   #e8f7f0;
+  --english:   #2d1b7e;
+  --english-bg:#eeecff;
+  --hindi:     #b83020;
+  --hindi-bg:  #fff0ee;
+  --desiya:    #9a5e00;
+  --desiya-bg: #fff8e8;
+  --radius:    14px;
+  --radius-sm: 8px;
+  --shadow:    0 2px 12px rgba(45,27,126,0.08);
+  --shadow-md: 0 4px 24px rgba(45,27,126,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  box-shadow:var(--shadow);
+  padding:0 1.25rem;
+  display:flex;align-items:center;gap:12px;height:60px;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;cursor:pointer;}
+.nav-logo img{width:38px;height:38px;border-radius:8px;object-fit:contain;}
+.nav-logo-text{line-height:1.15;}
+.nav-logo-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--brand);display:block;}
+.nav-logo-sub{font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;display:block;}
+.nav-search{
+  flex:1;display:flex;align-items:center;gap:8px;
+  background:var(--surf2);border:1px solid var(--border2);
+  border-radius:99px;padding:0 14px;height:38px;max-width:400px;
+}
+.nav-search input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;}
+.nav-search input::placeholder{color:var(--text3);}
+.nav-tabs{display:flex;gap:2px;align-items:center;}
+.nav-tab{
+  padding:6px 12px;border-radius:6px;border:none;background:none;
+  font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;
+  transition:all 0.15s;white-space:nowrap;
+}
+.nav-tab:hover{background:var(--surf2);color:var(--brand);}
+.nav-tab.active{background:var(--brand);color:#fff;}
+.nav-install{
+  display:none;align-items:center;gap:5px;
+  background:var(--brand);color:#fff;border:none;
+  border-radius:99px;padding:7px 14px;font-size:12px;font-weight:500;
+  cursor:pointer;white-space:nowrap;transition:background 0.2s;
+}
+.nav-install:hover{background:var(--brand2);}
+.nav-install.show{display:flex;}
+@media(max-width:640px){.nav-tabs{display:none;}}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--brand) 0%,var(--brand3) 60%,#7060d8 100%);
+  padding:2.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner{position:relative;z-index:1;}
+.hero-logo{width:72px;height:72px;border-radius:16px;margin:0 auto 1rem;display:block;box-shadow:0 8px 32px rgba(0,0,0,0.25);object-fit:contain;background:rgba(255,255,255,0.1);}
+.hero-tag{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.9);border-radius:99px;padding:3px 14px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:700;line-height:1.2;color:#fff;margin-bottom:0.5rem;}
+.hero h1 em{color:var(--gold2);font-style:italic;}
+.hero-sub{font-size:0.95rem;color:rgba(255,255,255,0.72);margin-bottom:1.5rem;font-style:italic;}
+.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.hero-stat-num{font-size:1.6rem;font-weight:700;color:var(--gold2);font-family:'Playfair Display',serif;}
+.hero-stat-label{font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* ── LANG TABS ── */
+.lang-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:1.2rem 1.25rem 0.8rem;justify-content:center;}
+.lang-tab{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 16px;border-radius:99px;
+  border:1.5px solid var(--border2);background:var(--surface);
+  color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.18s;
+}
+.lang-tab:hover{border-color:var(--brand);color:var(--brand);}
+.lang-tab .ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.lang-tab[data-lang="all"] .ldot{background:var(--brand);}
+.lang-tab[data-lang="odia"] .ldot{background:var(--odia);}
+.lang-tab[data-lang="english"] .ldot{background:var(--english);}
+.lang-tab[data-lang="hindi"] .ldot{background:var(--hindi);}
+.lang-tab[data-lang="desiya"] .ldot{background:var(--desiya);}
+.lang-tab.active[data-lang="all"]{border-color:var(--brand);background:var(--brand);color:#fff;}
+.lang-tab.active[data-lang="odia"]{border-color:var(--odia);background:var(--odia-bg);color:var(--odia);}
+.lang-tab.active[data-lang="english"]{border-color:var(--english);background:var(--english-bg);color:var(--english);}
+.lang-tab.active[data-lang="hindi"]{border-color:var(--hindi);background:var(--hindi-bg);color:var(--hindi);}
+.lang-tab.active[data-lang="desiya"]{border-color:var(--desiya);background:var(--desiya-bg);color:var(--desiya);}
+.lcount{font-size:11px;background:rgba(0,0,0,0.07);border-radius:99px;padding:1px 7px;}
+
+/* ── ALPHA BAR ── */
+.alpha-bar{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;padding:0 1.25rem 0.8rem;scrollbar-width:none;}
+.alpha-bar::-webkit-scrollbar{display:none;}
+.alpha-btn{
+  min-width:30px;height:30px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--surface);
+  color:var(--text3);font-size:11px;font-weight:600;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;transition:all 0.15s;padding:0 5px;
+}
+.alpha-btn:hover{border-color:var(--brand);color:var(--brand);}
+.alpha-btn.active{background:var(--brand);border-color:var(--brand);color:#fff;}
+
+/* ── SONGS LIST ── */
+.songs-section{padding:0 1.25rem 2rem;}
+.results-meta{font-size:12px;color:var(--text3);margin-bottom:0.8rem;display:flex;align-items:center;gap:8px;}
+.results-badge{background:var(--surf2);border:1px solid var(--border2);color:var(--brand);border-radius:99px;padding:2px 10px;font-size:11px;font-weight:600;}
+.songs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;}
+.song-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:12px 15px;display:flex;align-items:center;gap:10px;cursor:pointer;
+  transition:all 0.18s;position:relative;overflow:hidden;box-shadow:var(--shadow);
+}
+.song-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;opacity:0;transition:opacity 0.2s;}
+.song-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);border-color:var(--border2);}
+.song-card:hover::before{opacity:1;}
+.song-card[data-lang="odia"]::before{background:var(--odia);}
+.song-card[data-lang="english"]::before{background:var(--english);}
+.song-card[data-lang="hindi"]::before{background:var(--hindi);}
+.song-card[data-lang="desiya"]::before{background:var(--desiya);}
+.snum{font-size:11px;color:var(--text3);min-width:24px;text-align:right;flex-shrink:0;}
+.sname{font-size:13.5px;color:var(--text);flex:1;line-height:1.4;}
+.slang{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.song-card[data-lang="odia"] .slang{background:var(--odia);}
+.song-card[data-lang="english"] .slang{background:var(--english);}
+.song-card[data-lang="hindi"] .slang{background:var(--hindi);}
+.song-card[data-lang="desiya"] .slang{background:var(--desiya);}
+.sarrow{font-size:16px;color:var(--text3);}
+.no-results{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--text3);}
+
+/* ── DETAIL PAGE ── */
+#detail-page{padding:1.5rem 1.25rem 3rem;max-width:700px;margin:0 auto;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--text2);font-size:13px;cursor:pointer;margin-bottom:1.5rem;border:none;background:none;padding:6px 0;font-family:'Inter',sans-serif;transition:color 0.15s;}
+.back-btn:hover{color:var(--brand);}
+.detail-lang-badge{display:inline-block;border-radius:99px;padding:3px 14px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.8rem;}
+.detail-lang-badge.odia{background:var(--odia-bg);color:var(--odia);}
+.detail-lang-badge.english{background:var(--english-bg);color:var(--english);}
+.detail-lang-badge.hindi{background:var(--hindi-bg);color:var(--hindi);}
+.detail-lang-badge.desiya{background:var(--desiya-bg);color:var(--desiya);}
+#detail-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);font-weight:700;color:var(--brand);margin-bottom:1rem;line-height:1.25;}
+.detail-actions{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.dbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:99px;border:1.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;box-shadow:var(--shadow);}
+.dbtn:hover{background:var(--surf2);color:var(--brand);border-color:var(--brand);}
+.dbtn.primary{background:var(--brand);border-color:var(--brand);color:#fff;}
+.dbtn.primary:hover{background:var(--brand2);}
+.dbtn.active{background:var(--brand3);border-color:var(--brand);color:#fff;}
+.lyrics-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);}
+.lyrics-box pre{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:2;color:var(--text2);white-space:pre-wrap;user-select:text;}
+
+/* ── LYRICS VIEWS ── */
+.lyrics-view{display:none;}
+.lyrics-view.active{display:block;}
+
+/* ── DUAL LANGUAGE SELECTOR ── */
+.dual-language-selector{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.lang-selector-group{flex:1;min-width:200px;}
+.lang-selector-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;}
+.lang-selector-group select{
+  width:100%;padding:9px 12px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);
+  font-size:13px;color:var(--text);background:var(--surface);font-family:'Inter',sans-serif;
+  outline:none;transition:border 0.15s;cursor:pointer;
+}
+.lang-selector-group select:focus{border-color:var(--brand);}
+
+/* ── LYRICS COLUMNS ── */
+.lyrics-columns{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.lyrics-column{display:flex;flex-direction:column;}
+.column-header{
+  padding:0.8rem 1.2rem;background:var(--surf2);border:1px solid var(--border);
+  border-radius:var(--radius-sm) var(--radius-sm) 0 0;font-size:13px;font-weight:600;
+  color:var(--brand);border-bottom:2px solid var(--border);
+}
+.lyrics-column .lyrics-box{border-radius:0 0 var(--radius-sm) var(--radius-sm);margin-top:-2px;border-top:none;}
+
+@media(max-width:768px){
+  .lyrics-columns{grid-template-columns:1fr;}
+  .dual-language-selector{flex-direction:column;}
+  .lang-selector-group{min-width:100%;}
+}
+.detail-yt{display:flex;align-items:center;gap:10px;margin-top:1.2rem;padding:0.9rem 1.2rem;background:var(--surf2);border:1px solid var(--border);border-radius:var(--radius-sm);}
+.detail-yt a{color:var(--brand);font-size:13px;font-weight:500;text-decoration:none;}
+.detail-yt a:hover{text-decoration:underline;}
+.detail-note{margin-top:1rem;padding:1rem 1.2rem;background:#fff8e8;border:1px solid #e8d090;border-radius:var(--radius-sm);font-size:12.5px;color:#7a5800;display:flex;gap:8px;}
+
+/* ── SCRIPTURE PAGE ── */
+#scripture-page{padding:1.5rem 1.25rem 3rem;max-width:900px;margin:0 auto;}
+.page-header{margin-bottom:2rem;}
+.page-header h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--brand);margin-bottom:0.4rem;}
+.page-header p{font-size:14px;color:var(--text2);}
+.scripture-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.scripture-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all 0.2s;cursor:pointer;}
+.scripture-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.scripture-thumb{width:100%;height:160px;object-fit:cover;background:var(--surf2);}
+.scripture-thumb-placeholder{width:100%;height:160px;background:linear-gradient(135deg,var(--brand),var(--brand3));display:flex;align-items:center;justify-content:center;}
+.scripture-body{padding:1rem;}
+.scripture-body h3{font-size:15px;font-weight:600;color:var(--brand);margin-bottom:4px;}
+.scripture-body p{font-size:12px;color:var(--text2);line-height:1.5;}
+.scripture-ref{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--gold);background:#fff8e8;border:1px solid #e8d090;border-radius:99px;padding:2px 10px;}
+.yt-embed{width:100%;height:160px;border:none;}
+
+/* ── CONTACT PAGE ── */
+#contact-page{padding:1.5rem 1.25rem 3rem;max-width:700px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+@media(max-width:500px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);}
+.contact-info-card h3{font-size:14px;font-weight:600;color:var(--brand);margin-bottom:1rem;}
+.contact-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:var(--text2);}
+.contact-icon{width:32px;height:32px;border-radius:8px;background:var(--surf2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-link{color:var(--brand);text-decoration:none;font-size:13px;}
+.contact-link:hover{text-decoration:underline;}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);}
+.form-card h3{font-size:15px;font-weight:600;color:var(--brand);margin-bottom:1.2rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:9px 12px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);
+  font-size:13px;color:var(--text);background:var(--bg);font-family:'Inter',sans-serif;
+  outline:none;transition:border 0.15s;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--brand);}
+.form-group textarea{min-height:120px;resize:vertical;}
+.form-submit{width:100%;padding:11px;background:var(--brand);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s;}
+.form-submit:hover{background:var(--brand2);}
+.form-success{display:none;padding:1rem;background:#e8f7f0;border:1px solid #a0d8b8;border-radius:var(--radius-sm);color:#1d7a4f;font-size:13px;text-align:center;margin-top:1rem;}
+
+/* ── ABOUT STRIP ── */
+.about-strip{margin:0 1.25rem 1.5rem;padding:1.2rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow);}
+.about-info{font-size:13px;color:var(--text2);line-height:1.7;}
+.about-info strong{color:var(--brand);}
+.about-links{display:flex;gap:8px;flex-wrap:wrap;}
+.about-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:99px;border:1.5px solid var(--border2);background:var(--surf2);color:var(--text2);font-size:12px;text-decoration:none;transition:all 0.15s;font-weight:500;}
+.about-link:hover{color:var(--brand);border-color:var(--brand);}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;font-size:12px;color:var(--text3);}
+footer a{color:var(--brand);text-decoration:none;}
+
+/* ── OFFLINE ── */
+.offline-banner{display:none;position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;border-radius:99px;padding:8px 20px;font-size:12px;z-index:999;box-shadow:var(--shadow-md);}
+.offline-banner.show{display:block;}
+
+/* ── SCROLL TOP ── */
+#scrollTop{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;background:var(--brand);border:none;border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;color:#fff;z-index:99;box-shadow:var(--shadow-md);}
+#scrollTop.show{display:flex;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{animation:fadeUp 0.3s ease forwards;}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  nav{padding:0 0.9rem;gap:8px;}
+  .nav-logo-text{display:none;}
+  .hero{padding:2rem 1rem 1.5rem;}
+  .songs-grid,.scripture-grid{grid-template-columns:1fr;}
+  .songs-section,.alpha-bar,.lang-tabs{padding-left:1rem;padding-right:1rem;}
+  .about-strip{margin:0 1rem 1.5rem;}
+  #detail-page,#scripture-page,#contact-page{padding:1rem 1rem 3rem;}
+  .lyrics-box{padding:1.2rem;}
+  .contact-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="offline-banner" id="offlineBanner">📵 Offline — showing cached content</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <img src="logo.png" alt="Tech Passions Logo"/>
+    <div class="nav-logo-text">
+      <span class="nav-logo-title">Songs of Praise</span>
+      <span class="nav-logo-sub">techpassions.in</span>
+    </div>
+  </div>
+  <div class="nav-search">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="globalSearch" placeholder="Search songs…" oninput="onSearch(this.value)" autocomplete="off"/>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home')">Songs</button>
+    <button class="nav-tab" onclick="showPage('scripture')">ScriptureLink</button>
+    <button class="nav-tab" onclick="showPage('contact')">Contact</button>
+  </div>
+  <button class="nav-install" id="installBtn" onclick="installApp()">
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Install
+  </button>
+</nav>
+
+<!-- ══════════════════ HOME PAGE ══════════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="hero-logo" src="logo.png" alt="Songs of Praise"/>
+      <div class="hero-tag">ଓଡ଼ିଆ · English · हिंदी · Desiya</div>
+      <h1>Come, Let Us<br/><em>Worship His Name</em></h1>
+      <p class="hero-sub">Songs of Praise — in every language of the heart</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num" id="stat-total">0</div><div class="hero-stat-label">Total Songs</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Languages</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">∞</div><div class="hero-stat-label">Praise</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lang-tabs" id="langTabs">
+    <button class="lang-tab active" data-lang="all" onclick="setLang('all')"><span class="ldot"></span>All <span class="lcount" id="count-all">0</span></button>
+    <button class="lang-tab" data-lang="odia" onclick="setLang('odia')"><span class="ldot"></span>Odia <span class="lcount" id="count-odia">0</span></button>
+    <button class="lang-tab" data-lang="english" onclick="setLang('english')"><span class="ldot"></span>English <span class="lcount" id="count-english">0</span></button>
+    <button class="lang-tab" data-lang="hindi" onclick="setLang('hindi')"><span class="ldot"></span>Hindi <span class="lcount" id="count-hindi">0</span></button>
+    <button class="lang-tab" data-lang="desiya" onclick="setLang('desiya')"><span class="ldot"></span>Desiya <span class="lcount" id="count-desiya">0</span></button>
+  </div>
+
+  <div class="alpha-bar" id="alphaBar"></div>
+
+  <div class="songs-section">
+    <div class="results-meta"><span class="results-badge" id="resultsBadge">0 songs</span><span id="resultsLabel"></span></div>
+    <div class="songs-grid" id="songsGrid"></div>
+  </div>
+
+  <div class="about-strip">
+    <div class="about-info">
+      <strong>Er. Mangaladan Sagaria</strong> — Lamtaput, Odisha<br/>
+      <a href="mailto:techpassions.in@gmail.com" class="contact-link">techpassions.in@gmail.com</a> &nbsp;·&nbsp; 9437279479
+    </div>
+    <div class="about-links">
+      <a class="about-link" href="https://www.facebook.com/mangaladan" target="_blank">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook
+      </a>
+      <a class="about-link" href="https://www.youtube.com/channel/UCnURpLxRj8Aed43_3v1pHsA" target="_blank">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="white" points="9.75,15.02 15.5,12 9.75,8.98"/></svg>YouTube
+      </a>
+      <a class="about-link" href="https://play.google.com/store/apps/details?id=com.wSongsofPraise_14380468" target="_blank">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Android App
+      </a>
+      <button class="about-link" onclick="showPage('contact')" style="cursor:pointer;">✏️ Submit Song</button>
+    </div>
+  </div>
+  <footer>
+    <p>© 2021 Mangaladan Sagaria · <a href="https://techpassions.wixsite.com/lyrics" target="_blank">Songs of Praise</a> · Works offline after first visit</p>
+  </footer>
+</div>
+
+<!-- ══════════════════ SONG DETAIL PAGE ══════════════════ -->
+<div class="page" id="page-detail">
+  <div id="detail-page">
+    <button class="back-btn" onclick="goBack()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to songs
+    </button>
+    <div class="detail-lang-badge" id="detail-lang-badge"></div>
+    <h1 id="detail-title"></h1>
+    <div class="detail-actions">
+      <button class="dbtn primary" id="copyBtn" onclick="copyLyrics()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Lyrics
+      </button>
+      <button class="dbtn" onclick="shareSong()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+      <button class="dbtn" onclick="changeFontSize()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+        Text Size
+      </button>
+      <button class="dbtn" id="toggleDualBtn" onclick="toggleDualLanguage()" title="View lyrics in two languages side by side">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="3" y2="18"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/><line x1="12" y1="6" x2="12" y2="18"/><line x1="21" y1="18" x2="21" y2="6"/></svg>
+        Dual View
+      </button>
+    </div>
+    
+    <!-- Single Language View -->
+    <div id="singleLyricsView" class="lyrics-view active">
+      <div class="lyrics-box">
+        <pre id="detail-lyrics"></pre>
+      </div>
+    </div>
+    
+    <!-- Dual Language View -->
+    <div id="dualLyricsView" class="lyrics-view">
+      <div class="dual-language-selector">
+        <div class="lang-selector-group">
+          <label>Select First Language:</label>
+          <select id="leftLangSelect" onchange="updateDualView()">
+            <option value="">-- Select Language --</option>
+            <option value="odia">🙏 Odia</option>
+            <option value="english">✝️ English</option>
+            <option value="hindi">🕊️ Hindi</option>
+            <option value="desiya">🌿 Desiya</option>
+          </select>
+        </div>
+        <div class="lang-selector-group">
+          <label>Select Second Language:</label>
+          <select id="rightLangSelect" onchange="updateDualView()">
+            <option value="">-- Select Language --</option>
+            <option value="odia">🙏 Odia</option>
+            <option value="english">✝️ English</option>
+            <option value="hindi">🕊️ Hindi</option>
+            <option value="desiya">🌿 Desiya</option>
+          </select>
+        </div>
+      </div>
+      <div class="lyrics-columns">
+        <div class="lyrics-column">
+          <div class="column-header" id="leftColumnHeader"></div>
+          <div class="lyrics-box">
+            <pre id="left-lyrics"></pre>
+          </div>
+        </div>
+        <div class="lyrics-column">
+          <div class="column-header" id="rightColumnHeader"></div>
+          <div class="lyrics-box">
+            <pre id="right-lyrics"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-yt" id="detail-yt" style="display:none;">
+      <svg width="18" height="18" fill="#b83020" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="white" points="9.75,15.02 15.5,12 9.75,8.98"/></svg>
+      <a id="detail-yt-link" href="#" target="_blank">Listen with voice on YouTube</a>
+    </div>
+    <div class="detail-note">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span>Lyrics missing or incorrect? <a href="mailto:techpassions.in@gmail.com" style="color:var(--brand)">Email us</a> or <button onclick="showPage('contact')" style="background:none;border:none;color:var(--brand);cursor:pointer;font-size:inherit;padding:0;font-family:inherit;">submit a correction</button>.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCRIPTURE PAGE ══════════════════ -->
+<div class="page" id="page-scripture">
+  <div id="scripture-page">
+    <div class="page-header">
+      <h2>📖 ScriptureLink</h2>
+      <p>Bible messages and scripture-linked video teachings by Er. Mangaladan Sagaria</p>
+    </div>
+    <div class="scripture-grid">
+
+      <div class="scripture-card" onclick="window.open('https://www.youtube.com/watch?v=vjffadzImWY','_blank')">
+        <div class="scripture-thumb-placeholder">
+          <svg width="48" height="48" fill="white" viewBox="0 0 24 24" opacity="0.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#2d1b7e" points="9.75,15.02 15.5,12 9.75,8.98"/></svg>
+        </div>
+        <div class="scripture-body">
+          <h3>Bible Message — Worship &amp; Praise</h3>
+          <p>A scripture-linked video message on the meaning and power of worship in daily life.</p>
+          <span class="scripture-ref">▶ Watch on YouTube</span>
+        </div>
+      </div>
+
+      <div class="scripture-card" onclick="window.open('https://www.youtube.com/channel/UCnURpLxRj8Aed43_3v1pHsA','_blank')">
+        <div class="scripture-thumb-placeholder" style="background:linear-gradient(135deg,#1d7a4f,#2da870);">
+          <svg width="48" height="48" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24" opacity="0.9"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="scripture-body">
+          <h3>All Video Messages</h3>
+          <p>Browse the full collection of scripture-linked teachings and devotional messages on the YouTube channel.</p>
+          <span class="scripture-ref">📺 Open Channel</span>
+        </div>
+      </div>
+
+      <div class="scripture-card" onclick="window.open('https://techpassions.wixsite.com/lyrics/bible-messages','_blank')">
+        <div class="scripture-thumb-placeholder" style="background:linear-gradient(135deg,#9a5e00,#c8860a);">
+          <svg width="48" height="48" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24" opacity="0.9"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="scripture-body">
+          <h3>ScriptureLink — Original Page</h3>
+          <p>Visit the original ScriptureLink page on Songs of Praise for the complete library of messages.</p>
+          <span class="scripture-ref">🔗 Visit Page</span>
+        </div>
+      </div>
+
+      <div class="scripture-card" style="border:1.5px dashed var(--border2);box-shadow:none;cursor:default;">
+        <div class="scripture-thumb-placeholder" style="background:var(--surf2);">
+          <svg width="40" height="40" fill="none" stroke="var(--text3)" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <div class="scripture-body">
+          <h3 style="color:var(--text3);">More messages coming soon</h3>
+          <p>New scripture-linked video teachings are added regularly. Submit a song or message request via the Contact page.</p>
+          <button onclick="showPage('contact')" style="margin-top:8px;background:none;border:1.5px solid var(--border2);border-radius:99px;padding:3px 12px;font-size:11px;font-weight:600;color:var(--brand);cursor:pointer;">Submit Request</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CONTACT PAGE ══════════════════ -->
+<div class="page" id="page-contact">
+  <div id="contact-page">
+    <div class="page-header">
+      <h2>📬 Contact &amp; Submit</h2>
+      <p>Can't find a song? Want to correct lyrics? Send us a message!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-card">
+        <h3>Get in Touch</h3>
+        <div class="contact-row">
+          <div class="contact-icon">✉️</div>
+          <div><div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:2px;">EMAIL</div><a href="mailto:techpassions.in@gmail.com" class="contact-link">techpassions.in@gmail.com</a></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div><div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:2px;">PHONE</div><span>9437279479</span></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div><div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:2px;">LOCATION</div><span>Lamtaput, Odisha, India</span></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">👤</div>
+          <div><div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:2px;">DESIGNER</div><span>Er. Mangaladan Sagaria</span></div>
+        </div>
+        <div style="margin-top:1rem;display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="about-link" href="https://www.facebook.com/mangaladan" target="_blank">Facebook</a>
+          <a class="about-link" href="https://www.youtube.com/channel/UCnURpLxRj8Aed43_3v1pHsA" target="_blank">YouTube</a>
+        </div>
+      </div>
+
+      <div class="contact-info-card" style="background:linear-gradient(135deg,var(--brand),var(--brand3));color:#fff;border-color:transparent;">
+        <h3 style="color:#fff;">📱 Download App</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;margin-bottom:1rem;">Get Songs of Praise on your Android phone. Works offline once installed!</p>
+        <a href="https://play.google.com/store/apps/details?id=com.wSongsofPraise_14380468" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:99px;font-size:13px;font-weight:600;text-decoration:none;margin-bottom:8px;">▶ Google Play Store</a><br/>
+        <a href="https://www.webtonative.com/download-app/aB2Ga1NQvRIVDodv67Or" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);padding:7px 16px;border-radius:99px;font-size:12px;text-decoration:none;">⬇ Direct APK Download</a>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>✏️ Add or Update a Song</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="f-name" placeholder="Enter your name"/>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="f-email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Song Language</label>
+        <select id="f-lang">
+          <option value="">Select language</option>
+          <option>Odia</option>
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Desiya</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Song Title</label>
+        <input type="text" id="f-title" placeholder="Enter song title"/>
+      </div>
+      <div class="form-group">
+        <label>Lyrics / Correction</label>
+        <textarea id="f-lyrics" placeholder="Paste the full lyrics here, or describe what needs to be corrected…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>YouTube Link (optional)</label>
+        <input type="url" id="f-yt" placeholder="https://youtube.com/watch?v=..."/>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send Submission →</button>
+      <div class="form-success" id="form-success">
+        ✅ Thank you! Your submission has been sent to techpassions.in@gmail.com. We'll add it soon!
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="songs-data.js"></script>
+<script>
+// ── STATE ──
+let currentLang='all', currentAlpha='ALL', currentSearch='', currentSong=null, detailFontSize=1.1, prevPage='home', deferredPrompt=null;
+
+// ── PWA ──
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').classList.add('show');});
+function installApp(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBtn').classList.remove('show');});}
+
+// ── OFFLINE ──
+window.addEventListener('offline',()=>document.getElementById('offlineBanner').classList.add('show'));
+window.addEventListener('online',()=>document.getElementById('offlineBanner').classList.remove('show'));
+
+// ── INIT ──
+window.addEventListener('DOMContentLoaded',()=>{
+  updateCounts();
+  buildAlphaBar();
+  renderSongs();
+  document.getElementById('stat-total').textContent=SONGS.length;
+  window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400));
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+  window.addEventListener('popstate',()=>showPage('home'));
+});
+
+function showPage(p){
+  prevPage=document.querySelector('.page.active')?.id?.replace('page-','') || 'home';
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>{
+    t.classList.toggle('active',['home','scripture','contact'][i]===p);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(p==='home'){document.getElementById('globalSearch').value=currentSearch;}
+}
+function goBack(){showPage(prevPage==='detail'?'home':prevPage);}
+
+function updateCounts(){
+  ['all','odia','english','hindi','desiya'].forEach(l=>{
+    const n=l==='all'?SONGS.length:SONGS.filter(s=>s.lang===l).length;
+    document.getElementById('count-'+l).textContent=n;
+  });
+}
+function buildAlphaBar(){
+  const bar=document.getElementById('alphaBar');
+  bar.innerHTML='';
+  ['ALL',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].forEach(l=>{
+    const btn=document.createElement('button');
+    btn.className='alpha-btn'+(l===currentAlpha?' active':'');
+    btn.textContent=l;
+    btn.onclick=()=>{currentAlpha=l;buildAlphaBar();renderSongs();};
+    bar.appendChild(btn);
+  });
+}
+function setLang(lang){
+  currentLang=lang;currentAlpha='ALL';
+  document.querySelectorAll('.lang-tab').forEach(t=>t.classList.toggle('active',t.dataset.lang===lang));
+  buildAlphaBar();renderSongs();
+}
+function onSearch(val){
+  currentSearch=val.trim().toLowerCase();currentAlpha='ALL';
+  buildAlphaBar();renderSongs();
+}
+function getFiltered(){
+  return SONGS.filter(s=>{
+    const lOk=currentLang==='all'||s.lang===currentLang;
+    const aOk=currentAlpha==='ALL'||s.title[0].toUpperCase()===currentAlpha;
+    const sOk=!currentSearch||s.title.toLowerCase().includes(currentSearch);
+    return lOk&&aOk&&sOk;
+  });
+}
+function renderSongs(){
+  const grid=document.getElementById('songsGrid');
+  const filtered=getFiltered();
+  document.getElementById('resultsBadge').textContent=filtered.length+' song'+(filtered.length!==1?'s':'');
+  document.getElementById('resultsLabel').textContent=currentSearch?`matching "${currentSearch}"`:currentAlpha!=='ALL'?`starting with "${currentAlpha}"`:currentLang==='all'?'across all languages':currentLang+' songs';
+  grid.innerHTML='';
+  if(!filtered.length){grid.innerHTML='<div class="no-results"><p style="font-size:2rem">🎵</p><p style="margin-top:8px;">No songs found. Try a different search.</p></div>';return;}
+  filtered.forEach((song,i)=>{
+    const card=document.createElement('div');
+    card.className='song-card fade-up';
+    card.dataset.lang=song.lang;
+    card.style.animationDelay=Math.min(i*0.018,0.4)+'s';
+    card.innerHTML=`<span class="snum">${i+1}</span><span class="sname">${song.title}</span><span class="slang"></span><span class="sarrow">›</span>`;
+    card.onclick=()=>openSong(song);
+    grid.appendChild(card);
+  });
+}
+function openSong(song){
+  currentSong=song;
+  prevPage='home';
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  document.getElementById('page-detail').classList.add('active');
+  document.getElementById('detail-title').textContent=song.title;
+  const badge=document.getElementById('detail-lang-badge');
+  badge.textContent={odia:'🙏 Odia',english:'✝️ English',hindi:'🕊️ Hindi',desiya:'🌿 Desiya'}[song.lang]||song.lang;
+  badge.className='detail-lang-badge '+song.lang;
+  const lyricsEl=document.getElementById('detail-lyrics');
+  lyricsEl.textContent=song.lyrics||'(Lyrics coming soon — tap "Copy Lyrics" is disabled until lyrics are added.\n\nPlease contact us to contribute this song\'s lyrics: techpassions.in@gmail.com)';
+  detailFontSize=1.1;lyricsEl.style.fontSize=detailFontSize+'rem';
+  const ytDiv=document.getElementById('detail-yt');
+  if(song.ytUrl){ytDiv.style.display='flex';document.getElementById('detail-yt-link').href=song.ytUrl;}
+  else{ytDiv.style.display='none';}
+  window.scrollTo({top:0,behavior:'smooth'});
+  history.pushState({},'','#song-'+song.id);
+}
+function copyLyrics(){
+  if(!currentSong||!currentSong.lyrics)return;
+  navigator.clipboard.writeText(currentSong.title+'\n\n'+currentSong.lyrics).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    const orig=btn.innerHTML;btn.textContent='✓ Copied!';
+    setTimeout(()=>{btn.innerHTML=orig;},2000);
+  });
+}
+function shareSong(){
+  if(!currentSong)return;
+  const data={title:currentSong.title,text:'Worship song: '+currentSong.title,url:window.location.href};
+  if(navigator.share)navigator.share(data);
+  else{navigator.clipboard.writeText(window.location.href);alert('Link copied!');}
+}
+function changeFontSize(){
+  detailFontSize=detailFontSize>=1.7?0.95:detailFontSize+0.15;
+  document.getElementById('detail-lyrics').style.fontSize=detailFontSize+'rem';
+  const leftLyrics=document.getElementById('left-lyrics');
+  const rightLyrics=document.getElementById('right-lyrics');
+  if(leftLyrics)leftLyrics.style.fontSize=detailFontSize+'rem';
+  if(rightLyrics)rightLyrics.style.fontSize=detailFontSize+'rem';
+}
+function toggleDualLanguage(){
+  const singleView=document.getElementById('singleLyricsView');
+  const dualView=document.getElementById('dualLyricsView');
+  const toggleBtn=document.getElementById('toggleDualBtn');
+  const isDualActive=dualView.classList.contains('active');
+  
+  singleView.classList.toggle('active');
+  dualView.classList.toggle('active');
+  toggleBtn.classList.toggle('active',!isDualActive);
+  
+  if(!isDualActive){
+    // Always initialize with current song language on left, another language on right
+    const langSelect=document.getElementById('leftLangSelect');
+    const rightLangSelect=document.getElementById('rightLangSelect');
+    langSelect.value=currentSong.lang;
+    const otherLangs={odia:'english',english:'odia',hindi:'english',desiya:'odia'};
+    rightLangSelect.value=otherLangs[currentSong.lang]||'english';
+    updateDualView();
+  }
+}
+function updateDualView(){
+  const leftLang=document.getElementById('leftLangSelect').value;
+  const rightLang=document.getElementById('rightLangSelect').value;
+  
+  if(!leftLang && !rightLang)return;
+  
+  const baseId=currentSong.id.substring(1); // Remove language prefix
+  
+  // Find songs with same base ID in selected languages
+  const leftSong=leftLang?SONGS.find(s=>s.id.substring(1)===baseId&&s.lang===leftLang):null;
+  const rightSong=rightLang?SONGS.find(s=>s.id.substring(1)===baseId&&s.lang===rightLang):null;
+  
+  // Update left column
+  const leftLyricsEl=document.getElementById('left-lyrics');
+  const leftHeaderEl=document.getElementById('leftColumnHeader');
+  if(leftSong){
+    leftHeaderEl.textContent={odia:'🙏 Odia',english:'✝️ English',hindi:'🕊️ Hindi',desiya:'🌿 Desiya'}[leftLang];
+    leftHeaderEl.style.color={odia:'var(--odia)',english:'var(--english)',hindi:'var(--hindi)',desiya:'var(--desiya)'}[leftLang];
+    leftLyricsEl.textContent=leftSong.lyrics||'(Lyrics not available)';
+  }else if(leftLang){
+    leftHeaderEl.textContent='Not available in '+{odia:'Odia',english:'English',hindi:'Hindi',desiya:'Desiya'}[leftLang];
+    leftLyricsEl.textContent='';
+  }
+  
+  // Update right column
+  const rightLyricsEl=document.getElementById('right-lyrics');
+  const rightHeaderEl=document.getElementById('rightColumnHeader');
+  if(rightSong){
+    rightHeaderEl.textContent={odia:'🙏 Odia',english:'✝️ English',hindi:'🕊️ Hindi',desiya:'🌿 Desiya'}[rightLang];
+    rightHeaderEl.style.color={odia:'var(--odia)',english:'var(--english)',hindi:'var(--hindi)',desiya:'var(--desiya)'}[rightLang];
+    rightLyricsEl.textContent=rightSong.lyrics||'(Lyrics not available)';
+  }else if(rightLang){
+    rightHeaderEl.textContent='Not available in '+{odia:'Odia',english:'English',hindi:'Hindi',desiya:'Desiya'}[rightLang];
+    rightLyricsEl.textContent='';
+  }
+  
+  // Apply font size
+  leftLyricsEl.style.fontSize=detailFontSize+'rem';
+  rightLyricsEl.style.fontSize=detailFontSize+'rem';
+}
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const lang=document.getElementById('f-lang').value;
+  const title=document.getElementById('f-title').value.trim();
+  const lyrics=document.getElementById('f-lyrics').value.trim();
+  const yt=document.getElementById('f-yt').value.trim();
+  if(!title){alert('Please enter the song title.');return;}
+  const subject=encodeURIComponent('Song Submission: '+title+' ['+lang+']');
+  const body=encodeURIComponent('From: '+name+'\nEmail: '+email+'\nLanguage: '+lang+'\nSong Title: '+title+'\n\nLyrics:\n'+lyrics+(yt?'\n\nYouTube: '+yt:''));
+  window.location.href='mailto:techpassions.in@gmail.com?subject='+subject+'&body='+body;
+  document.getElementById('form-success').style.display='block';
+}
+</script>
+</body>
+</html>
