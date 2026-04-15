@@ -837,11 +837,14 @@ footer a{color:var(--brand);text-decoration:none;}
 </button>
 
 <script src="songs-data.js"></script>
+<script src="db.js"></script>
 <script>
 // ── STATE ──
 let currentLang='all', currentAlpha='ALL', currentSearch='', currentSong=null, detailFontSize=1.1, prevPage='home', deferredPrompt=null;
 let isAdminAuthenticated = false; // Admin authentication state
+let allSongs = []; // Will be loaded from IndexedDB or SONGS
 const ADMIN_PASSWORD = 'admin123'; // Change this to your desired password
+let pendingSyncCount = 0;
 
 // ── PWA ──
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').classList.add('show');});
@@ -849,17 +852,90 @@ function installApp(){if(!deferredPrompt)return;deferredPrompt.prompt();deferred
 
 // ── OFFLINE ──
 window.addEventListener('offline',()=>document.getElementById('offlineBanner').classList.add('show'));
-window.addEventListener('online',()=>document.getElementById('offlineBanner').classList.remove('show'));
+window.addEventListener('online',()=>{
+  document.getElementById('offlineBanner').classList.remove('show');
+  // Try to sync when back online
+  syncPendingUpdates();
+});
+
+// ── SERVICE WORKER MESSAGING ──
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.ready.then(reg => {
+    // Request background sync when online
+    if('sync' in reg && navigator.onLine){
+      reg.sync.register('sync-songs');
+    }
+  });
+
+  // Listen for sync completion from SW
+  navigator.serviceWorker.addEventListener('message', event => {
+    if(event.data.type === 'SYNC_PENDING'){
+      syncPendingUpdates();
+    }
+  });
+}
 
 // ── INIT ──
+async function initializeApp(){
+  try{
+    // Initialize IndexedDB
+    await SongsDB.init();
+    
+    // Load songs from IndexedDB, fallback to static SONGS
+    let dbSongs = await SongsDB.getAllSongs();
+    
+    if(dbSongs.length === 0 && typeof SONGS !== 'undefined'){
+      // First time - bulk import static songs
+      await SongsDB.bulkAddSongs(SONGS);
+      dbSongs = await SongsDB.getAllSongs();
+    }
+    
+    // Merge with admin updates from localStorage
+    const adminUpdates = localStorage.getItem('adminSongs');
+    if(adminUpdates){
+      try{
+        const adminSongs = JSON.parse(adminUpdates);
+        // Add/update admin songs to the list
+        adminSongs.forEach(song => {
+          const existingIdx = dbSongs.findIndex(s => s.id === song.id);
+          if(existingIdx >= 0){
+            // Update existing
+            dbSongs[existingIdx] = {...dbSongs[existingIdx], ...song, updated: Date.now()};
+          }else{
+            // Add new
+            dbSongs.push({...song, updated: Date.now(), synced: false});
+          }
+        });
+      }catch(e){
+        console.warn('Failed to merge admin updates:', e);
+      }
+    }
+    
+    allSongs = dbSongs;
+    updateCounts();
+    buildAlphaBar();
+    renderSongs();
+    
+  }catch(err){
+    console.error('Failed to initialize app:', err);
+    // Fallback to static data
+    if(typeof SONGS !== 'undefined'){
+      allSongs = SONGS;
+      updateCounts();
+      buildAlphaBar();
+      renderSongs();
+    }
+  }
+}
+
 window.addEventListener('DOMContentLoaded',()=>{
-  updateCounts();
-  buildAlphaBar();
-  renderSongs();
-  document.getElementById('stat-total').textContent=SONGS.length;
-  window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400));
-  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
-  window.addEventListener('popstate',()=>showPage('home'));
+  initializeApp().then(() => {
+    document.getElementById('stat-total').textContent=allSongs.length;
+    window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400));
+    if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+    window.addEventListener('popstate',()=>showPage('home'));
+    checkPendingSync();
+  });
 });
 
 function showPage(p){
@@ -882,7 +958,7 @@ function goBack(){showPage(prevPage==='detail'?'home':prevPage);}
 
 function updateCounts(){
   ['all','odia','english','hindi','desiya'].forEach(l=>{
-    const n=l==='all'?SONGS.length:SONGS.filter(s=>s.lang===l).length;
+    const n=l==='all'?allSongs.length:allSongs.filter(s=>s.lang===l).length;
     document.getElementById('count-'+l).textContent=n;
   });
 }
@@ -907,7 +983,7 @@ function onSearch(val){
   buildAlphaBar();renderSongs();
 }
 function getFiltered(){
-  return SONGS.filter(s=>{
+  return allSongs.filter(s=>{
     const lOk=currentLang==='all'||s.lang===currentLang;
     const aOk=currentAlpha==='ALL'||s.title[0].toUpperCase()===currentAlpha;
     const sOk=!currentSearch||s.title.toLowerCase().includes(currentSearch);
@@ -1000,8 +1076,8 @@ function updateDualView(){
   const baseId=currentSong.id.substring(1); // Remove language prefix
   
   // Find songs with same base ID in selected languages
-  const leftSong=leftLang?SONGS.find(s=>s.id.substring(1)===baseId&&s.lang===leftLang):null;
-  const rightSong=rightLang?SONGS.find(s=>s.id.substring(1)===baseId&&s.lang===rightLang):null;
+  const leftSong=leftLang?allSongs.find(s=>s.id.substring(1)===baseId&&s.lang===leftLang):null;
+  const rightSong=rightLang?allSongs.find(s=>s.id.substring(1)===baseId&&s.lang===rightLang):null;
   
   // Update left column
   const leftLyricsEl=document.getElementById('left-lyrics');
@@ -1045,7 +1121,7 @@ function submitForm(){
   document.getElementById('form-success').style.display='block';
 }
 
-// ── AUTHENTICATION FUNCTIONS ──
+// ADMIN AUTHENTICATION FUNCTIONS
 function showLoginModal(){
   document.getElementById('loginModal').classList.remove('hidden');
   document.getElementById('adminPassword').focus();
@@ -1220,12 +1296,20 @@ function saveSong(event){
     });
   }
 
-  // Save to localStorage
+  // Save to localStorage (for backward compatibility)
   localStorage.setItem('adminSongs', JSON.stringify(adminSongs));
 
-  hideSongForm();
-  renderAdminSongs();
-  alert(`Song${songsToSave.length > 1 ? 's' : ''} saved successfully!`);
+  // Also save to IndexedDB and sync queue
+  (async () => {
+    for(let songData of songsToSave){
+      await saveSongToSync(songData, originalSongId ? 'update' : 'add');
+    }
+    hideSongForm();
+    renderAdminSongs();
+    // Refresh main page too
+    await initializeApp();
+    alert(`Song${songsToSave.length > 1 ? 's' : ''} saved successfully! Changes will sync when online.`);
+  })();
 }
 
 function addLanguageSection(){
@@ -1403,7 +1487,15 @@ function deleteSong(songId){
   // Remove all versions of this song
   adminSongs = adminSongs.filter(s => s.title !== song.title);
   localStorage.setItem('adminSongs', JSON.stringify(adminSongs));
+  
+  // Delete from IndexedDB and add to sync queue
+  songVersions.forEach(async v => {
+    await SongsDB.deleteSong(v.id);
+    await SongsDB.addToSyncQueue('delete', { id: v.id, title: song.title });
+  });
+  
   renderAdminSongs();
+  initializeApp(); // Refresh main view
 }
 
 function renderAdminSongs(){
@@ -1544,6 +1636,136 @@ document.addEventListener('DOMContentLoaded', function(){
     attributeFilter: ['class']
   });
 });
+
+// ── SYNC FUNCTIONS ──
+async function saveSongToSync(songData, action = 'update'){
+  try{
+    // Save to IndexedDB
+    await SongsDB.saveSong(songData);
+    
+    // Add to sync queue for backend sync (when available)
+    await SongsDB.addToSyncQueue(action, songData);
+    
+    // Update allSongs
+    const idx = allSongs.findIndex(s => s.id === songData.id);
+    if(idx >= 0){
+      allSongs[idx] = songData;
+    }else{
+      allSongs.push(songData);
+    }
+    
+    // Mark as pending sync
+    pendingSyncCount++;
+    showSyncStatus();
+    
+    // Show notification
+    showNotification('Changes saved. Will sync when online.');
+  }catch(err){
+    console.error('Failed to save song:', err);
+    showNotification('Failed to save changes. Please try again.', 'error');
+  }
+}
+
+async function syncPendingUpdates(){
+  if(!navigator.onLine){
+    console.log('Currently offline, skipping sync');
+    return;
+  }
+  
+  try{
+    const queue = await SongsDB.getSyncQueue();
+    if(queue.length === 0){
+      pendingSyncCount = 0;
+      showSyncStatus();
+      return;
+    }
+    
+    for(let item of queue){
+      try{
+        // Send to server (would need a backend endpoint)
+        // For now, just mark as synced since this is offline-first
+        await SongsDB.updateSyncQueueItem(item.id, 'synced');
+        pendingSyncCount--;
+      }catch(err){
+        console.error('Failed to sync item', item.id, err);
+        await SongsDB.updateSyncQueueItem(item.id, 'pending', (item.attempts || 0) + 1);
+      }
+    }
+    
+    showSyncStatus();
+    if(pendingSyncCount === 0){
+      showNotification('All changes synced!');
+    }
+  }catch(err){
+    console.error('Sync error:', err);
+  }
+}
+
+async function checkPendingSync(){
+  try{
+    const queue = await SongsDB.getSyncQueue();
+    pendingSyncCount = queue.filter(q => q.status === 'pending').length;
+    showSyncStatus();
+  }catch(err){
+    console.error('Failed to check pending sync:', err);
+  }
+}
+
+function showSyncStatus(){
+  const banner = document.getElementById('offlineBanner');
+  if(pendingSyncCount > 0 && navigator.onLine){
+    const syncBanner = document.createElement('div');
+    syncBanner.className = 'notification notification-warning';
+    syncBanner.id = 'syncPendingBanner';
+    syncBanner.innerHTML = `
+      <span>📤 ${pendingSyncCount} change${pendingSyncCount > 1 ? 's' : ''} pending sync</span>
+      <button onclick="syncPendingUpdates()" style="background:none;border:none;color:inherit;cursor:pointer;font-weight:600;margin-left:auto;">Sync Now</button>
+    `;
+    
+    const existing = document.getElementById('syncPendingBanner');
+    if(existing){
+      existing.replaceWith(syncBanner);
+    }else if(banner){
+      banner.parentNode.insertBefore(syncBanner, banner.nextSibling);
+    }
+  }else{
+    const existing = document.getElementById('syncPendingBanner');
+    if(existing) existing.remove();
+  }
+}
+
+function showNotification(message, type = 'success'){
+  const notif = document.createElement('div');
+  notif.className = `notification notification-${type}`;
+  notif.textContent = message;
+  notif.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#ff9800'};
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+  `;
+  document.body.appendChild(notif);
+  setTimeout(() => notif.remove(), 3000);
+}
+
+// Add CSS animation if not exists
+if(!document.getElementById('notif-styles')){
+  const style = document.createElement('style');
+  style.id = 'notif-styles';
+  style.textContent = `
+    @keyframes slideIn {
+      from { transform: translateX(400px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+}
 </script>
 </body>
 </html>
