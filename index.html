@@ -1409,6 +1409,12 @@ function generateSongId(lang){
   return langPrefix + nextId.toString().padStart(3, '0');
 }
 
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text || '';
+  return div.innerHTML;
+}
+
 function editSong(songId){
   if(!checkAdminAuth()) return;
   const song = adminSongs.find(s => s.id === songId);
@@ -1455,7 +1461,7 @@ function editSong(songId){
         </div>
         <div class="form-group">
           <label>Lyrics *</label>
-          <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language...">${version.lyrics || ''}</textarea>
+          <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language...">${escapeHtml(version.lyrics)}</textarea>
         </div>
       </div>
     `;
