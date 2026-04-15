@@ -1409,12 +1409,6 @@ function generateSongId(lang){
   return langPrefix + nextId.toString().padStart(3, '0');
 }
 
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text || '';
-  return div.innerHTML;
-}
-
 function editSong(songId){
   if(!checkAdminAuth()) return;
   const song = adminSongs.find(s => s.id === songId);
@@ -1461,11 +1455,18 @@ function editSong(songId){
         </div>
         <div class="form-group">
           <label>Lyrics *</label>
-          <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language...">${escapeHtml(version.lyrics)}</textarea>
+          <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language..."></textarea>
         </div>
       </div>
     `;
     container.insertAdjacentHTML('beforeend', sectionHtml);
+  });
+
+  // Set textarea values after inserting HTML to avoid HTML injection
+  const sections = container.querySelectorAll('.language-section');
+  sections.forEach((section, index) => {
+    const textarea = section.querySelector('.songLyrics');
+    textarea.value = songVersions[index].lyrics || '';
   });
 
   // Set common fields from the first version
