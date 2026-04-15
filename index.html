@@ -272,6 +272,99 @@ nav{
 .about-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:99px;border:1.5px solid var(--border2);background:var(--surf2);color:var(--text2);font-size:12px;text-decoration:none;transition:all 0.15s;font-weight:500;}
 .about-link:hover{color:var(--brand);border-color:var(--brand);}
 
+/* ── ADMIN PANEL ── */
+.admin-tab{background:var(--gold);color:var(--text);border-color:var(--gold);}
+.admin-tab:hover{background:var(--gold2);}
+#admin-page{padding:1.5rem 1.25rem 3rem;max-width:1000px;margin:0 auto;}
+
+/* ── LOGIN MODAL ── */
+.login-modal{
+  position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);
+  display:flex;align-items:center;justify-content:center;z-index:1000;
+  backdrop-filter:blur(4px);
+}
+.login-modal.hidden{display:none;}
+.login-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:2rem;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+.login-card h3{font-size:20px;font-weight:700;color:var(--brand);margin-bottom:1.5rem;text-align:center;}
+.login-group{margin-bottom:1.5rem;}
+.login-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;}
+.login-group input{
+  width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);
+  font-size:16px;color:var(--text);background:var(--bg);outline:none;transition:border 0.15s;
+}
+.login-group input:focus{border-color:var(--brand);}
+.login-actions{display:flex;gap:12px;margin-top:2rem;}
+.login-btn{
+  flex:1;padding:12px;border-radius:var(--radius-sm);border:none;font-size:14px;font-weight:600;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;
+}
+.login-btn.primary{background:var(--brand);color:#fff;}
+.login-btn.primary:hover{background:var(--brand2);}
+.login-btn.secondary{background:var(--surf2);color:var(--text2);border:1px solid var(--border2);}
+.login-btn.secondary:hover{background:var(--surface);color:var(--brand);border-color:var(--brand);}
+.login-error{display:none;color:#c33;font-size:13px;margin-top:8px;text-align:center;}
+
+.admin-controls{display:flex;gap:12px;margin-bottom:2rem;flex-wrap:wrap;}
+.admin-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:99px;border:1.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;box-shadow:var(--shadow);}
+.admin-btn:hover{background:var(--surf2);color:var(--brand);border-color:var(--brand);}
+.admin-btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;}
+.admin-btn.primary:hover{background:var(--brand2);}
+.admin-btn.secondary{background:var(--surf2);border-color:var(--border);color:var(--text3);}
+.admin-btn.secondary:hover{background:var(--surface);color:var(--text2);border-color:var(--border2);}
+.song-form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:2rem;box-shadow:var(--shadow);}
+.song-form-card h3{font-size:18px;font-weight:600;color:var(--brand);margin-bottom:1.5rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{margin-bottom:1.5rem;}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:11px 14px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);
+  font-size:14px;color:var(--text);background:var(--bg);font-family:'Inter',sans-serif;
+  outline:none;transition:border 0.15s;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--brand);}
+.form-group textarea{min-height:200px;resize:vertical;font-family:'Playfair Display',serif;}
+.form-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:2rem;}
+.admin-songs-list h3{font-size:16px;font-weight:600;color:var(--brand);margin-bottom:1rem;}
+.songs-filter{display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.songs-filter select,.songs-filter input{
+  padding:8px 12px;border:1px solid var(--border2);border-radius:var(--radius-sm);
+  font-size:13px;color:var(--text);background:var(--surface);outline:none;
+}
+.admin-songs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+.admin-song-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;display:flex;flex-direction:column;gap:8px;transition:all 0.15s;cursor:pointer;box-shadow:var(--shadow);}
+.admin-song-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);border-color:var(--border2);}
+.admin-song-title{font-size:14px;font-weight:600;color:var(--brand);line-height:1.3;}
+.admin-song-meta{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:8px;}
+.admin-song-lang{background:var(--surf2);color:var(--text2);padding:2px 8px;border-radius:99px;font-size:10px;font-weight:600;}
+.admin-song-actions{display:flex;gap:6px;margin-top:8px;}
+.language-section{
+  border:1px solid var(--border2);border-radius:var(--radius-sm);
+  padding:1.5rem;margin-bottom:1rem;background:var(--bg);
+  position:relative;
+}
+.language-section-header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;
+}
+.language-section-header h4{
+  font-size:14px;font-weight:600;color:var(--brand);margin:0;
+}
+.remove-lang-btn{
+  background:none;border:1px solid var(--border2);border-radius:50%;
+  width:24px;height:24px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--text3);transition:all 0.15s;
+}
+.remove-lang-btn:hover{background:var(--border2);color:#c33;}
+
+@media(max-width:768px){
+  .form-row{grid-template-columns:1fr;}
+  .admin-controls{flex-direction:column;}
+  .admin-songs-grid{grid-template-columns:1fr;}
+  .songs-filter{flex-direction:column;}
+}
+
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;font-size:12px;color:var(--text3);}
 footer a{color:var(--brand);text-decoration:none;}
@@ -323,6 +416,7 @@ footer a{color:var(--brand);text-decoration:none;}
     <button class="nav-tab active" onclick="showPage('home')">Songs</button>
     <button class="nav-tab" onclick="showPage('scripture')">ScriptureLink</button>
     <button class="nav-tab" onclick="showPage('contact')">Contact</button>
+    <button class="nav-tab admin-tab" onclick="showPage('admin')">Admin</button>
   </div>
   <button class="nav-install" id="installBtn" onclick="installApp()">
     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -526,6 +620,136 @@ footer a{color:var(--brand);text-decoration:none;}
   </div>
 </div>
 
+<!-- ══════════════════ ADMIN PAGE ══════════════════ -->
+<div class="page" id="page-admin">
+  <div id="admin-page">
+    <div class="page-header">
+      <h2>⚙️ Admin Panel</h2>
+      <p>Manage songs database - Add, edit, or update songs</p>
+    </div>
+
+    <div class="admin-controls">
+      <button class="admin-btn primary" onclick="showAddSongForm()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add New Song
+      </button>
+      <button class="admin-btn" onclick="exportSongsData()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export Data
+      </button>
+      <button class="admin-btn" onclick="importSongsData()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Import Data
+      </button>
+      <button class="admin-btn secondary" onclick="logoutAdmin()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+    </div>
+
+    <!-- Song Form -->
+    <div id="songForm" class="song-form-card" style="display:none;">
+      <h3 id="formTitle">Add New Song</h3>
+      <form id="adminSongForm" onsubmit="saveSong(event)">
+        <input type="hidden" id="songId" value="">
+
+        <div class="form-group">
+          <label>Song Title *</label>
+          <input type="text" id="songTitle" required placeholder="Enter song title (same for all languages)">
+        </div>
+
+        <!-- Language Sections Container -->
+        <div id="languageSections">
+          <div class="language-section" data-index="0">
+            <div class="language-section-header">
+              <h4>Language Version 1</h4>
+              <button type="button" class="remove-lang-btn" onclick="removeLanguageSection(0)" style="display:none;">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Language *</label>
+                <select class="songLang" required>
+                  <option value="">Select language</option>
+                  <option value="odia">🙏 Odia</option>
+                  <option value="english">✝️ English</option>
+                  <option value="hindi">🕊️ Hindi</option>
+                  <option value="desiya">🌿 Desiya</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <div style="display:flex;gap:8px;">
+                  <button type="button" class="admin-btn secondary" onclick="addLanguageSection()" style="font-size:12px;padding:8px 12px;">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add Language
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Lyrics *</label>
+              <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>YouTube URL (optional - applies to all languages)</label>
+          <input type="url" id="songYtUrl" placeholder="https://youtube.com/watch?v=...">
+        </div>
+
+        <div class="form-group">
+          <label>Source URL (optional - applies to all languages)</label>
+          <input type="url" id="songUrl" placeholder="https://techpassions.wixsite.com/lyrics/...">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="admin-btn secondary" onclick="hideSongForm()">Cancel</button>
+          <button type="submit" class="admin-btn primary">Save Song</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Songs List for Editing -->
+    <div class="admin-songs-list">
+      <h3>Existing Songs</h3>
+      <div class="songs-filter">
+        <select id="adminLangFilter" onchange="filterAdminSongs()">
+          <option value="all">All Languages</option>
+          <option value="odia">🙏 Odia</option>
+          <option value="english">✝️ English</option>
+          <option value="hindi">🕊️ Hindi</option>
+          <option value="desiya">🌿 Desiya</option>
+        </select>
+        <input type="text" id="adminSearch" placeholder="Search songs..." oninput="filterAdminSongs()">
+      </div>
+      <div id="adminSongsGrid" class="admin-songs-grid">
+        <!-- Songs will be populated here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ LOGIN MODAL ══════════════════ -->
+<div id="loginModal" class="login-modal hidden">
+  <div class="login-card">
+    <h3>🔐 Admin Access</h3>
+    <form id="loginForm" onsubmit="authenticateAdmin(event)">
+      <div class="login-group">
+        <label>Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter admin password" required autocomplete="current-password">
+      </div>
+      <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+      <div class="login-actions">
+        <button type="button" class="login-btn secondary" onclick="cancelLogin()">Cancel</button>
+        <button type="submit" class="login-btn primary">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- ══════════════════ CONTACT PAGE ══════════════════ -->
 <div class="page" id="page-contact">
   <div id="contact-page">
@@ -616,6 +840,8 @@ footer a{color:var(--brand);text-decoration:none;}
 <script>
 // ── STATE ──
 let currentLang='all', currentAlpha='ALL', currentSearch='', currentSong=null, detailFontSize=1.1, prevPage='home', deferredPrompt=null;
+let isAdminAuthenticated = false; // Admin authentication state
+const ADMIN_PASSWORD = 'admin123'; // Change this to your desired password
 
 // ── PWA ──
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').classList.add('show');});
@@ -637,11 +863,17 @@ window.addEventListener('DOMContentLoaded',()=>{
 });
 
 function showPage(p){
+  // Check admin authentication
+  if(p === 'admin' && !isAdminAuthenticated){
+    showLoginModal();
+    return;
+  }
+
   prevPage=document.querySelector('.page.active')?.id?.replace('page-','') || 'home';
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('.nav-tab').forEach((t,i)=>{
-    t.classList.toggle('active',['home','scripture','contact'][i]===p);
+    t.classList.toggle('active',['home','scripture','contact','admin'][i]===p);
   });
   window.scrollTo({top:0,behavior:'smooth'});
   if(p==='home'){document.getElementById('globalSearch').value=currentSearch;}
@@ -812,6 +1044,506 @@ function submitForm(){
   window.location.href='mailto:techpassions.in@gmail.com?subject='+subject+'&body='+body;
   document.getElementById('form-success').style.display='block';
 }
+
+// ── AUTHENTICATION FUNCTIONS ──
+function showLoginModal(){
+  document.getElementById('loginModal').classList.remove('hidden');
+  document.getElementById('adminPassword').focus();
+  document.getElementById('loginError').style.display = 'none';
+}
+
+function cancelLogin(){
+  document.getElementById('loginModal').classList.add('hidden');
+  document.getElementById('adminPassword').value = '';
+  // If we were trying to access admin, go back to home
+  if(prevPage !== 'admin'){
+    showPage('home');
+  }
+}
+
+function authenticateAdmin(event){
+  event.preventDefault();
+  const password = document.getElementById('adminPassword').value;
+
+  if(password === ADMIN_PASSWORD){
+    isAdminAuthenticated = true;
+    document.getElementById('loginModal').classList.add('hidden');
+    document.getElementById('adminPassword').value = '';
+    showPage('admin'); // Now show the admin page
+  }else{
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminPassword').focus();
+  }
+}
+
+function logoutAdmin(){
+  isAdminAuthenticated = false;
+  showPage('home');
+  // Clear any sensitive data from memory
+  adminSongs = [...SONGS];
+  localStorage.removeItem('adminSongs');
+}
+
+// ── ADMIN FUNCTIONS ──
+let adminSongs = [...SONGS]; // Working copy of songs
+
+function checkAdminAuth(){
+  if(!isAdminAuthenticated){
+    showLoginModal();
+    return false;
+  }
+  return true;
+}
+
+function showAddSongForm(){
+  if(!checkAdminAuth()) return;
+  document.getElementById('formTitle').textContent='Add New Song';
+  document.getElementById('songId').value='';
+  document.getElementById('songTitle').value='';
+
+  // Reset language sections to one empty section
+  const container = document.getElementById('languageSections');
+  container.innerHTML = `
+    <div class="language-section" data-index="0">
+      <div class="language-section-header">
+        <h4>Language Version 1</h4>
+        <button type="button" class="remove-lang-btn" onclick="removeLanguageSection(0)" style="display:none;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Language *</label>
+          <select class="songLang" required>
+            <option value="">Select language</option>
+            <option value="odia">🙏 Odia</option>
+            <option value="english">✝️ English</option>
+            <option value="hindi">🕊️ Hindi</option>
+            <option value="desiya">🌿 Desiya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="admin-btn secondary" onclick="addLanguageSection()" style="font-size:12px;padding:8px 12px;">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Language
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Lyrics *</label>
+        <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language..."></textarea>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('songYtUrl').value='';
+  document.getElementById('songUrl').value='';
+  document.getElementById('songForm').style.display='block';
+  document.getElementById('songTitle').focus();
+}
+
+function hideSongForm(){
+  document.getElementById('songForm').style.display='none';
+}
+
+function saveSong(event){
+  event.preventDefault();
+
+  const title = document.getElementById('songTitle').value.trim();
+  const ytUrl = document.getElementById('songYtUrl').value.trim();
+  const url = document.getElementById('songUrl').value.trim();
+
+  if(!title){
+    alert('Please enter a song title.');
+    return;
+  }
+
+  // Collect all language sections
+  const languageSections = document.querySelectorAll('.language-section');
+  const songsToSave = [];
+  const originalSongId = document.getElementById('songId').value;
+
+  for(let section of languageSections){
+    const langSelect = section.querySelector('.songLang');
+    const lyricsTextarea = section.querySelector('.songLyrics');
+
+    const lang = langSelect.value;
+    const lyrics = lyricsTextarea.value.trim();
+
+    if(!lang || !lyrics){
+      alert('Please fill in all required fields for each language.');
+      return;
+    }
+
+    // Check for duplicate languages
+    if(songsToSave.some(s => s.lang === lang)){
+      alert(`You have selected the same language (${lang}) multiple times. Please choose different languages.`);
+      return;
+    }
+
+    const songData = {
+      title: title,
+      lang: lang,
+      lyrics: lyrics,
+      url: url || `https://techpassions.wixsite.com/lyrics/${lang.toUpperCase()}/${title.toLowerCase().replace(/\s+/g,'-')}`
+    };
+
+    if(ytUrl) songData.ytUrl = ytUrl;
+
+    songsToSave.push(songData);
+  }
+
+  // Handle saving
+  if(originalSongId){
+    // Editing existing song(s) - find all versions with same title
+    const originalSong = adminSongs.find(s => s.id === originalSongId);
+    if(originalSong){
+      const baseTitle = originalSong.title;
+      // Remove all existing versions
+      adminSongs = adminSongs.filter(s => s.title !== baseTitle);
+
+      // Add new versions with generated IDs
+      songsToSave.forEach(songData => {
+        songData.id = generateSongId(songData.lang);
+        adminSongs.push(songData);
+      });
+    }
+  }else{
+    // Adding new songs
+    songsToSave.forEach(songData => {
+      songData.id = generateSongId(songData.lang);
+      adminSongs.push(songData);
+    });
+  }
+
+  // Save to localStorage
+  localStorage.setItem('adminSongs', JSON.stringify(adminSongs));
+
+  hideSongForm();
+  renderAdminSongs();
+  alert(`Song${songsToSave.length > 1 ? 's' : ''} saved successfully!`);
+}
+
+function addLanguageSection(){
+  const container = document.getElementById('languageSections');
+  const existingSections = container.querySelectorAll('.language-section');
+  const newIndex = existingSections.length;
+
+  // Hide "Add Language" button from previous section
+  const lastSection = existingSections[existingSections.length - 1];
+  const addBtn = lastSection.querySelector('.admin-btn');
+  if(addBtn) addBtn.style.display = 'none';
+
+  // Show remove button on first section if this is the second section
+  if(newIndex === 1){
+    const firstRemoveBtn = existingSections[0].querySelector('.remove-lang-btn');
+    if(firstRemoveBtn) firstRemoveBtn.style.display = 'flex';
+  }
+
+  const sectionHtml = `
+    <div class="language-section" data-index="${newIndex}">
+      <div class="language-section-header">
+        <h4>Language Version ${newIndex + 1}</h4>
+        <button type="button" class="remove-lang-btn" onclick="removeLanguageSection(${newIndex})">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Language *</label>
+          <select class="songLang" required>
+            <option value="">Select language</option>
+            <option value="odia">🙏 Odia</option>
+            <option value="english">✝️ English</option>
+            <option value="hindi">🕊️ Hindi</option>
+            <option value="desiya">🌿 Desiya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="admin-btn secondary" onclick="addLanguageSection()" style="font-size:12px;padding:8px 12px;">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Language
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Lyrics *</label>
+        <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language..."></textarea>
+      </div>
+    </div>
+  `;
+
+  container.insertAdjacentHTML('beforeend', sectionHtml);
+}
+
+function removeLanguageSection(index){
+  const container = document.getElementById('languageSections');
+  const sections = container.querySelectorAll('.language-section');
+
+  if(sections.length <= 1){
+    alert('You must have at least one language version.');
+    return;
+  }
+
+  // Remove the section
+  sections[index].remove();
+
+  // Update remaining sections
+  const remainingSections = container.querySelectorAll('.language-section');
+  remainingSections.forEach((section, i) => {
+    section.setAttribute('data-index', i);
+    section.querySelector('h4').textContent = `Language Version ${i + 1}`;
+
+    // Update remove button onclick
+    const removeBtn = section.querySelector('.remove-lang-btn');
+    removeBtn.setAttribute('onclick', `removeLanguageSection(${i})`);
+
+    // Show/hide remove buttons appropriately
+    if(remainingSections.length === 1){
+      removeBtn.style.display = 'none';
+    }
+
+    // Update add button visibility (only show on last section)
+    const addBtn = section.querySelector('.admin-btn');
+    if(addBtn){
+      addBtn.style.display = (i === remainingSections.length - 1) ? 'inline-flex' : 'none';
+    }
+  });
+}
+
+function generateSongId(lang){
+  const langPrefix = lang.charAt(0);
+  const existingIds = adminSongs.filter(s => s.id.startsWith(langPrefix)).map(s => parseInt(s.id.substring(1)));
+  const nextId = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
+  return langPrefix + nextId.toString().padStart(3, '0');
+}
+
+function editSong(songId){
+  if(!checkAdminAuth()) return;
+  const song = adminSongs.find(s => s.id === songId);
+  if(!song) return;
+
+  // Find all versions of this song (same title, different languages)
+  const baseTitle = song.title;
+  const songVersions = adminSongs.filter(s => s.title === baseTitle);
+
+  document.getElementById('formTitle').textContent='Edit Song';
+  document.getElementById('songId').value=songId; // Keep the original ID for reference
+  document.getElementById('songTitle').value=baseTitle;
+
+  // Create language sections for each version
+  const container = document.getElementById('languageSections');
+  container.innerHTML = '';
+
+  songVersions.forEach((version, index) => {
+    const sectionHtml = `
+      <div class="language-section" data-index="${index}">
+        <div class="language-section-header">
+          <h4>Language Version ${index + 1}</h4>
+          <button type="button" class="remove-lang-btn" onclick="removeLanguageSection(${index})" ${songVersions.length > 1 ? '' : 'style="display:none;"'}>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Language *</label>
+            <select class="songLang" required>
+              <option value="">Select language</option>
+              <option value="odia" ${version.lang === 'odia' ? 'selected' : ''}>🙏 Odia</option>
+              <option value="english" ${version.lang === 'english' ? 'selected' : ''}>✝️ English</option>
+              <option value="hindi" ${version.lang === 'hindi' ? 'selected' : ''}>🕊️ Hindi</option>
+              <option value="desiya" ${version.lang === 'desiya' ? 'selected' : ''}>🌿 Desiya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <div style="display:flex;gap:8px;">
+              ${index === songVersions.length - 1 ? '<button type="button" class="admin-btn secondary" onclick="addLanguageSection()" style="font-size:12px;padding:8px 12px;"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Language</button>' : ''}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Lyrics *</label>
+          <textarea class="songLyrics" required rows="8" placeholder="Enter lyrics for this language...">${version.lyrics || ''}</textarea>
+        </div>
+      </div>
+    `;
+    container.insertAdjacentHTML('beforeend', sectionHtml);
+  });
+
+  // Set common fields from the first version
+  document.getElementById('songYtUrl').value=song.ytUrl || '';
+  document.getElementById('songUrl').value=song.url || '';
+  document.getElementById('songForm').style.display='block';
+}
+
+function deleteSong(songId){
+  if(!checkAdminAuth()) return;
+
+  const song = adminSongs.find(s => s.id === songId);
+  if(!song) return;
+
+  // Check if there are multiple versions of this song
+  const songVersions = adminSongs.filter(s => s.title === song.title);
+
+  let confirmMessage = 'Are you sure you want to delete this song?';
+  if(songVersions.length > 1){
+    confirmMessage = `This song has ${songVersions.length} language versions. Deleting this will remove all versions. Are you sure?`;
+  }
+
+  if(!confirm(confirmMessage)) return;
+
+  // Remove all versions of this song
+  adminSongs = adminSongs.filter(s => s.title !== song.title);
+  localStorage.setItem('adminSongs', JSON.stringify(adminSongs));
+  renderAdminSongs();
+}
+
+function renderAdminSongs(){
+  const grid = document.getElementById('adminSongsGrid');
+  const langFilter = document.getElementById('adminLangFilter').value;
+  const searchTerm = document.getElementById('adminSearch').value.toLowerCase();
+
+  let filteredSongs = adminSongs;
+
+  if(langFilter !== 'all'){
+    filteredSongs = filteredSongs.filter(s => s.lang === langFilter);
+  }
+
+  if(searchTerm){
+    filteredSongs = filteredSongs.filter(s =>
+      s.title.toLowerCase().includes(searchTerm) ||
+      s.lyrics.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  grid.innerHTML = '';
+
+  if(filteredSongs.length === 0){
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3);">No songs found</div>';
+    return;
+  }
+
+  filteredSongs.forEach(song => {
+    const card = document.createElement('div');
+    card.className = 'admin-song-card';
+    card.innerHTML = `
+      <div class="admin-song-title">${song.title}</div>
+      <div class="admin-song-meta">
+        <span class="admin-song-lang">${getLangDisplay(song.lang)}</span>
+        <span>ID: ${song.id}</span>
+      </div>
+      <div class="admin-song-actions">
+        <button class="admin-btn secondary" onclick="editSong('${song.id}')">Edit</button>
+        <button class="admin-btn secondary" onclick="deleteSong('${song.id}')" style="background:#fee;border-color:#fcc;color:#c33;">Delete</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function getLangDisplay(lang){
+  const displays = {odia:'🙏 Odia', english:'✝️ English', hindi:'🕊️ Hindi', desiya:'🌿 Desiya'};
+  return displays[lang] || lang;
+}
+
+function filterAdminSongs(){
+  renderAdminSongs();
+}
+
+function exportSongsData(){
+  if(!checkAdminAuth()) return;
+  const dataStr = 'const SONGS = ' + JSON.stringify(adminSongs, null, 2) + ';';
+  const blob = new Blob([dataStr], {type: 'text/javascript'});
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'songs-data.js';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  alert('Songs data exported! Replace the SONGS array in songs-data.js with this exported data.');
+}
+
+function importSongsData(){
+  if(!checkAdminAuth()) return;
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.js,.json';
+  input.onchange = function(e){
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try{
+        const content = e.target.result;
+        let importedSongs;
+
+        if(content.includes('const SONGS = ')){
+          // Extract from JS file
+          const match = content.match(/const SONGS = (\[[\s\S]*\]);/);
+          if(match){
+            importedSongs = JSON.parse(match[1]);
+          }
+        }else{
+          // Assume JSON
+          importedSongs = JSON.parse(content);
+        }
+
+        if(Array.isArray(importedSongs)){
+          adminSongs = importedSongs;
+          localStorage.setItem('adminSongs', JSON.stringify(adminSongs));
+          renderAdminSongs();
+          alert('Songs data imported successfully!');
+        }else{
+          alert('Invalid file format. Please select a valid songs-data.js or JSON file.');
+        }
+      }catch(err){
+        alert('Error importing file: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+// Initialize admin panel
+document.addEventListener('DOMContentLoaded', function(){
+  // Load saved songs from localStorage
+  const savedSongs = localStorage.getItem('adminSongs');
+  if(savedSongs){
+    try{
+      adminSongs = JSON.parse(savedSongs);
+    }catch(e){
+      console.warn('Failed to load saved songs:', e);
+    }
+  }
+
+  // Show admin songs when admin page is shown (only if authenticated)
+  const observer = new MutationObserver(function(mutations){
+    mutations.forEach(function(mutation){
+      if(mutation.target.id === 'page-admin' && mutation.target.classList.contains('active') && isAdminAuthenticated){
+        renderAdminSongs();
+      }
+    });
+  });
+
+  observer.observe(document.getElementById('page-admin'), {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+});
 </script>
 </body>
 </html>
