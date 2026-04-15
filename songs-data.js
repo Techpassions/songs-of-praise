@@ -85,39 +85,7 @@ const SONGS = [
 ଯୀଶୁ ଅମୃତ ଅର୍ଣ୍ଣବ
 ଅନୁକ୍ଷଣ କର ପାନ
 ସର୍ବ ପୁଷ୍ପର ସୌରଭ
-ତହୁଁ ସଦା କର ଘ୍ରାଣ ॥
-
-—
-
-(Transliteration)
-
-0) Dhanya jisu dhanya jisu
-dhanya jisu priya nama.
-
-1) Jisu sarba gunadhama
-ke karipare barnnana
-tribhubane tanka sama
-kisa achi tulana.
-
-2) Jisu satya premaratna
-sehi dele tanuprana
-manadhara karijatna
-tanka pade sarana.
-
-3) Jisu chanti svargasetu
-kona pathara pramana
-dinahina papi hetu
-pitrudatta paritrana.
-
-4) Jisu pranadayi brukhya
-tahu nitya tolaphala
-tanka chaya tale basa
-seto ati ramyasthala.
-
-5) Jisu amruta arnanaba
-anukhyana kara pano
-sarba puspara saurabha
-tahu sada kara ghrana.`},
+ତହୁଁ ସଦା କର ଘ୍ରାଣ ॥`},
 {id:'o058',lang:'odia',title:'Dhanya! dhanya! jisu muktidata ama',url:'https://techpassions.wixsite.com/lyrics/ODIA/dhanya!-dhanya!-jisu-muktidata-ama',lyrics:''},
 {id:'o059',lang:'odia',title:'Dhanyabada ghena prabhu',url:'https://techpassions.wixsite.com/lyrics/ODIA/dhanyabada-ghena-prabhu',lyrics:''},
 {id:'o060',lang:'odia',title:'Dhanyabada gheno prabhu, bhanga mo antaroro',url:'https://techpassions.wixsite.com/lyrics/ODIA/dhanyabada-gheno-prabhu%2C-bhanga-mo-antaroro',lyrics:''},
